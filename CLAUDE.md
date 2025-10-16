@@ -6,13 +6,22 @@
 The Laravel Boost guidelines are specifically curated by Laravel maintainers for this application. These guidelines should be followed closely to enhance the user's satisfaction building Laravel applications.
 
 ## Foundational Context
+This application is **ArcPanel**, a self-hosted SSH management panel built with Laravel. It provides web-based SSH access and server management capabilities.
+
+**IMPORTANT**: Always reference [ARCPANEL.md](ARCPANEL.md) for application-specific guidelines including:
+- Color system & theming (accent colors, zinc palette, dark mode)
+- Flux UI component usage and patterns
+- SSH panel architecture and security requirements
+- Terminal UI and server management patterns
+
 This application is a Laravel application and its main Laravel ecosystems package & versions are below. You are an expert with them all. Ensure you abide by these specific packages & versions.
 
 - php - 8.4.1
 - laravel/fortify (FORTIFY) - v1
 - laravel/framework (LARAVEL) - v12
 - laravel/prompts (PROMPTS) - v0
-- livewire/flux (FLUXUI_FREE) - v2
+- livewire/flux (FLUX) - v2.2.5
+- livewire/flux-pro (FLUXUI_PRO) - v2.2.5 (installed from local source)
 - livewire/livewire (LIVEWIRE) - v3
 - livewire/volt (VOLT) - v1
 - laravel/mcp (MCP) - v0
@@ -182,27 +191,31 @@ protected function isAccessible(User $user, ?string $path = null): bool
 - Casts can and likely should be set in a `casts()` method on a model rather than the `$casts` property. Follow existing conventions from other models.
 
 
-=== fluxui-free/core rules ===
+=== fluxui-pro/core rules ===
 
-## Flux UI Free
+## Flux UI Pro
 
-- This project is using the free edition of Flux UI. It has full access to the free components and variants, but does not have access to the Pro components.
+- This project is using **Flux UI Pro v2.2.5** (installed from local source at `packages/flux-pro/`). It has full access to both free and Pro components.
 - Flux UI is a component library for Livewire. Flux is a robust, hand-crafted, UI component library for your Livewire applications. It's built using Tailwind CSS and provides a set of components that are easy to use and customize.
-- You should use Flux UI components when available.
-- Fallback to standard Blade components if Flux is unavailable.
-- If available, use Laravel Boost's `search-docs` tool to get the exact documentation and code snippets available for this project.
+- **ALWAYS** use Flux UI components when available - both free and Pro components.
+- Fallback to standard Blade components only if Flux is unavailable.
+- Use Laravel Boost's `search-docs` tool to get the exact documentation and code snippets available for this project.
 - Flux UI components look like this:
 
 <code-snippet name="Flux UI Component Usage Example" lang="blade">
     <flux:button variant="primary"/>
+    <flux:table><!-- Pro component --></flux:table>
+    <flux:command><!-- Pro component --></flux:command>
 </code-snippet>
 
 
-### Available Components
-This is correct as of Boost installation, but there may be additional components within the codebase.
+### Available Components (Free + Pro)
+Refer to [ARCPANEL.md](ARCPANEL.md) for complete component list and SSH panel-specific usage examples.
 
 <available-flux-components>
-avatar, badge, brand, breadcrumbs, button, callout, checkbox, dropdown, field, heading, icon, input, modal, navbar, profile, radio, select, separator, switch, text, textarea, tooltip
+Free: avatar, badge, brand, breadcrumbs, button, callout, checkbox, dropdown, field, heading, icon, input, modal, navbar, profile, radio, select, separator, switch, text, textarea, tooltip
+
+Pro: accordion, autocomplete, calendar, card, chart (area/line/axis/legends/tooltips), command, context, date-picker, editor (rich text WYSIWYG), pagination, popover, select (advanced variants: combobox/listbox), tab/tabs, table (sortable/filterable), toast
 </available-flux-components>
 
 
